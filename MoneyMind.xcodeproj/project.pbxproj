@@ -7,25 +7,79 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0329E87264263D80021DC1F /* PreloadCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0329E86264263D80021DC1F /* PreloadCategory.plist */; };
+		D0329E89264322090021DC1F /* AddCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0329E88264322090021DC1F /* AddCategoryViewController.swift */; };
+		D0329E8B2643257F0021DC1F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0329E8A2643257F0021DC1F /* SettingsViewController.swift */; };
+		D0329E8D26432FE70021DC1F /* CategoryExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0329E8C26432FE70021DC1F /* CategoryExpensesViewController.swift */; };
 		D033105D263FAF21006A4524 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D033105C263FAF21006A4524 /* AppDelegate.swift */; };
 		D033105F263FAF21006A4524 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D033105E263FAF21006A4524 /* SceneDelegate.swift */; };
 		D0331061263FAF21006A4524 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0331060263FAF21006A4524 /* ViewController.swift */; };
 		D0331064263FAF21006A4524 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0331062263FAF21006A4524 /* Main.storyboard */; };
-		D0331067263FAF21006A4524 /* MoneyMind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0331065263FAF21006A4524 /* MoneyMind.xcdatamodeld */; };
 		D0331069263FAF23006A4524 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0331068263FAF23006A4524 /* Assets.xcassets */; };
 		D033106C263FAF23006A4524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D033106A263FAF23006A4524 /* LaunchScreen.storyboard */; };
+		D0331075263FB193006A4524 /* ExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0331074263FB193006A4524 /* ExpensesViewController.swift */; };
+		D0331077263FB1AE006A4524 /* AddExpensesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0331076263FB1AE006A4524 /* AddExpensesViewController.swift */; };
+		D033108F263FB864006A4524 /* MulticastDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D033108E263FB864006A4524 /* MulticastDelegate.swift */; };
+		D08611D9265987B6000AF3B1 /* MoneyMind.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D08611D7265987B6000AF3B1 /* MoneyMind.xcdatamodeld */; };
+		D08611E5265AF2E6000AF3B1 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08611E4265AF2E6000AF3B1 /* CalendarViewController.swift */; };
+		D08611EA265BCB95000AF3B1 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08611E9265BCB95000AF3B1 /* CalendarCollectionViewCell.swift */; };
+		D08611ED265BD3DC000AF3B1 /* CalendarMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08611EC265BD3DC000AF3B1 /* CalendarMethods.swift */; };
+		D08A3D3426537B2C00B85505 /* DatabaseRetrieve.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D3326537B2C00B85505 /* DatabaseRetrieve.swift */; };
+		D08A3D3626538F9000B85505 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D3526538F9000B85505 /* StatisticsViewController.swift */; };
+		D08A3D382653C4F600B85505 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D372653C4F600B85505 /* MenuViewController.swift */; };
+		D08A3D3A2653E72D00B85505 /* WalletLinkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D392653E72D00B85505 /* WalletLinkViewController.swift */; };
+		D08A3D3C2653FD8100B85505 /* ATMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D3B2653FD8100B85505 /* ATMViewController.swift */; };
+		D08A3D3E265541F100B85505 /* NotificationSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D3D265541F100B85505 /* NotificationSettingsViewController.swift */; };
+		D08A3D472655839B00B85505 /* ExpensesDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D462655839B00B85505 /* ExpensesDelegate.swift */; };
+		D08A3D6E2655895E00B85505 /* NotificationSettings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D642655895E00B85505 /* NotificationSettings+CoreDataClass.swift */; };
+		D08A3D6F2655895E00B85505 /* NotificationSettings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D652655895E00B85505 /* NotificationSettings+CoreDataProperties.swift */; };
+		D08A3D702655895E00B85505 /* Category+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D662655895E00B85505 /* Category+CoreDataClass.swift */; };
+		D08A3D712655895E00B85505 /* Category+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D672655895E00B85505 /* Category+CoreDataProperties.swift */; };
+		D08A3D722655895E00B85505 /* Expenses+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D682655895E00B85505 /* Expenses+CoreDataClass.swift */; };
+		D08A3D732655895E00B85505 /* Expenses+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D692655895E00B85505 /* Expenses+CoreDataProperties.swift */; };
+		D08A3D742655895E00B85505 /* Savings+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D6A2655895E00B85505 /* Savings+CoreDataClass.swift */; };
+		D08A3D752655895E00B85505 /* Savings+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D6B2655895E00B85505 /* Savings+CoreDataProperties.swift */; };
+		D08A3D762655895E00B85505 /* Budget+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D6C2655895E00B85505 /* Budget+CoreDataClass.swift */; };
+		D08A3D772655895E00B85505 /* Budget+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08A3D6D2655895E00B85505 /* Budget+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0329E86264263D80021DC1F /* PreloadCategory.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PreloadCategory.plist; sourceTree = "<group>"; };
+		D0329E88264322090021DC1F /* AddCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCategoryViewController.swift; sourceTree = "<group>"; };
+		D0329E8A2643257F0021DC1F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D0329E8C26432FE70021DC1F /* CategoryExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryExpensesViewController.swift; sourceTree = "<group>"; };
 		D0331059263FAF21006A4524 /* MoneyMind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyMind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D033105C263FAF21006A4524 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D033105E263FAF21006A4524 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D0331060263FAF21006A4524 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0331063263FAF21006A4524 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D0331066263FAF21006A4524 /* MoneyMind.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoneyMind.xcdatamodel; sourceTree = "<group>"; };
 		D0331068263FAF23006A4524 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D033106B263FAF23006A4524 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D033106D263FAF23006A4524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0331074263FB193006A4524 /* ExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesViewController.swift; sourceTree = "<group>"; };
+		D0331076263FB1AE006A4524 /* AddExpensesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpensesViewController.swift; sourceTree = "<group>"; };
+		D033108E263FB864006A4524 /* MulticastDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MulticastDelegate.swift; sourceTree = "<group>"; };
+		D08611D8265987B6000AF3B1 /* MoneyMind.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MoneyMind.xcdatamodel; sourceTree = "<group>"; };
+		D08611E4265AF2E6000AF3B1 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		D08611E9265BCB95000AF3B1 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		D08611EC265BD3DC000AF3B1 /* CalendarMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarMethods.swift; sourceTree = "<group>"; };
+		D08A3D3326537B2C00B85505 /* DatabaseRetrieve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseRetrieve.swift; sourceTree = "<group>"; };
+		D08A3D3526538F9000B85505 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		D08A3D372653C4F600B85505 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		D08A3D392653E72D00B85505 /* WalletLinkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLinkViewController.swift; sourceTree = "<group>"; };
+		D08A3D3B2653FD8100B85505 /* ATMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ATMViewController.swift; sourceTree = "<group>"; };
+		D08A3D3D265541F100B85505 /* NotificationSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsViewController.swift; sourceTree = "<group>"; };
+		D08A3D462655839B00B85505 /* ExpensesDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesDelegate.swift; sourceTree = "<group>"; };
+		D08A3D642655895E00B85505 /* NotificationSettings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationSettings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D652655895E00B85505 /* NotificationSettings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationSettings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D662655895E00B85505 /* Category+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D672655895E00B85505 /* Category+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D682655895E00B85505 /* Expenses+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expenses+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D692655895E00B85505 /* Expenses+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expenses+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D6A2655895E00B85505 /* Savings+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D6B2655895E00B85505 /* Savings+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Savings+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D6C2655895E00B85505 /* Budget+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		D08A3D6D2655895E00B85505 /* Budget+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Budget+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +112,12 @@
 		D033105B263FAF21006A4524 /* MoneyMind */ = {
 			isa = PBXGroup;
 			children = (
+				D08611EB265BD3D2000AF3B1 /* Methods */,
+				D08611E6265BCB40000AF3B1 /* Cell */,
+				D033108D263FB72A006A4524 /* Database */,
+				D0331079263FB468006A4524 /* Delegates */,
+				D0331078263FB45D006A4524 /* DataModel */,
+				D0331073263FB172006A4524 /* ViewControllers */,
 				D033105C263FAF21006A4524 /* AppDelegate.swift */,
 				D033105E263FAF21006A4524 /* SceneDelegate.swift */,
 				D0331060263FAF21006A4524 /* ViewController.swift */,
@@ -65,9 +125,78 @@
 				D0331068263FAF23006A4524 /* Assets.xcassets */,
 				D033106A263FAF23006A4524 /* LaunchScreen.storyboard */,
 				D033106D263FAF23006A4524 /* Info.plist */,
-				D0331065263FAF21006A4524 /* MoneyMind.xcdatamodeld */,
 			);
 			path = MoneyMind;
+			sourceTree = "<group>";
+		};
+		D0331073263FB172006A4524 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D0331074263FB193006A4524 /* ExpensesViewController.swift */,
+				D0329E8A2643257F0021DC1F /* SettingsViewController.swift */,
+				D0331076263FB1AE006A4524 /* AddExpensesViewController.swift */,
+				D0329E88264322090021DC1F /* AddCategoryViewController.swift */,
+				D0329E8C26432FE70021DC1F /* CategoryExpensesViewController.swift */,
+				D08A3D3526538F9000B85505 /* StatisticsViewController.swift */,
+				D08A3D372653C4F600B85505 /* MenuViewController.swift */,
+				D08A3D392653E72D00B85505 /* WalletLinkViewController.swift */,
+				D08A3D3B2653FD8100B85505 /* ATMViewController.swift */,
+				D08A3D3D265541F100B85505 /* NotificationSettingsViewController.swift */,
+				D08611E4265AF2E6000AF3B1 /* CalendarViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D0331078263FB45D006A4524 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D08A3D642655895E00B85505 /* NotificationSettings+CoreDataClass.swift */,
+				D08A3D652655895E00B85505 /* NotificationSettings+CoreDataProperties.swift */,
+				D08A3D662655895E00B85505 /* Category+CoreDataClass.swift */,
+				D08A3D672655895E00B85505 /* Category+CoreDataProperties.swift */,
+				D08A3D682655895E00B85505 /* Expenses+CoreDataClass.swift */,
+				D08A3D692655895E00B85505 /* Expenses+CoreDataProperties.swift */,
+				D08A3D6A2655895E00B85505 /* Savings+CoreDataClass.swift */,
+				D08A3D6B2655895E00B85505 /* Savings+CoreDataProperties.swift */,
+				D08A3D6C2655895E00B85505 /* Budget+CoreDataClass.swift */,
+				D08A3D6D2655895E00B85505 /* Budget+CoreDataProperties.swift */,
+				D08611D7265987B6000AF3B1 /* MoneyMind.xcdatamodeld */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		D0331079263FB468006A4524 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				D08A3D462655839B00B85505 /* ExpensesDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		D033108D263FB72A006A4524 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				D033108E263FB864006A4524 /* MulticastDelegate.swift */,
+				D0329E86264263D80021DC1F /* PreloadCategory.plist */,
+				D08A3D3326537B2C00B85505 /* DatabaseRetrieve.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		D08611E6265BCB40000AF3B1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D08611E9265BCB95000AF3B1 /* CalendarCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		D08611EB265BD3D2000AF3B1 /* Methods */ = {
+			isa = PBXGroup;
+			children = (
+				D08611EC265BD3DC000AF3B1 /* CalendarMethods.swift */,
+			);
+			path = Methods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0329E87264263D80021DC1F /* PreloadCategory.plist in Resources */,
 				D033106C263FAF23006A4524 /* LaunchScreen.storyboard in Resources */,
 				D0331069263FAF23006A4524 /* Assets.xcassets in Resources */,
 				D0331064263FAF21006A4524 /* Main.storyboard in Resources */,
@@ -140,10 +270,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D08A3D3426537B2C00B85505 /* DatabaseRetrieve.swift in Sources */,
+				D08A3D732655895E00B85505 /* Expenses+CoreDataProperties.swift in Sources */,
+				D08A3D472655839B00B85505 /* ExpensesDelegate.swift in Sources */,
+				D08A3D772655895E00B85505 /* Budget+CoreDataProperties.swift in Sources */,
+				D08A3D6F2655895E00B85505 /* NotificationSettings+CoreDataProperties.swift in Sources */,
+				D08611D9265987B6000AF3B1 /* MoneyMind.xcdatamodeld in Sources */,
 				D0331061263FAF21006A4524 /* ViewController.swift in Sources */,
+				D033108F263FB864006A4524 /* MulticastDelegate.swift in Sources */,
+				D08A3D752655895E00B85505 /* Savings+CoreDataProperties.swift in Sources */,
+				D0331077263FB1AE006A4524 /* AddExpensesViewController.swift in Sources */,
+				D08A3D3626538F9000B85505 /* StatisticsViewController.swift in Sources */,
+				D08A3D712655895E00B85505 /* Category+CoreDataProperties.swift in Sources */,
+				D08611E5265AF2E6000AF3B1 /* CalendarViewController.swift in Sources */,
 				D033105D263FAF21006A4524 /* AppDelegate.swift in Sources */,
-				D0331067263FAF21006A4524 /* MoneyMind.xcdatamodeld in Sources */,
+				D08A3D6E2655895E00B85505 /* NotificationSettings+CoreDataClass.swift in Sources */,
+				D0329E8D26432FE70021DC1F /* CategoryExpensesViewController.swift in Sources */,
+				D08A3D742655895E00B85505 /* Savings+CoreDataClass.swift in Sources */,
+				D0331075263FB193006A4524 /* ExpensesViewController.swift in Sources */,
+				D08A3D382653C4F600B85505 /* MenuViewController.swift in Sources */,
+				D08611EA265BCB95000AF3B1 /* CalendarCollectionViewCell.swift in Sources */,
+				D08A3D702655895E00B85505 /* Category+CoreDataClass.swift in Sources */,
+				D0329E89264322090021DC1F /* AddCategoryViewController.swift in Sources */,
+				D08A3D3C2653FD8100B85505 /* ATMViewController.swift in Sources */,
 				D033105F263FAF21006A4524 /* SceneDelegate.swift in Sources */,
+				D08A3D722655895E00B85505 /* Expenses+CoreDataClass.swift in Sources */,
+				D08611ED265BD3DC000AF3B1 /* CalendarMethods.swift in Sources */,
+				D08A3D3E265541F100B85505 /* NotificationSettingsViewController.swift in Sources */,
+				D08A3D3A2653E72D00B85505 /* WalletLinkViewController.swift in Sources */,
+				D08A3D762655895E00B85505 /* Budget+CoreDataClass.swift in Sources */,
+				D0329E8B2643257F0021DC1F /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +447,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GU6U5PXXM5;
 				INFOPLIST_FILE = MoneyMind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,6 +466,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GU6U5PXXM5;
 				INFOPLIST_FILE = MoneyMind/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -345,12 +503,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		D0331065263FAF21006A4524 /* MoneyMind.xcdatamodeld */ = {
+		D08611D7265987B6000AF3B1 /* MoneyMind.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				D0331066263FAF21006A4524 /* MoneyMind.xcdatamodel */,
+				D08611D8265987B6000AF3B1 /* MoneyMind.xcdatamodel */,
 			);
-			currentVersion = D0331066263FAF21006A4524 /* MoneyMind.xcdatamodel */;
+			currentVersion = D08611D8265987B6000AF3B1 /* MoneyMind.xcdatamodel */;
 			path = MoneyMind.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
