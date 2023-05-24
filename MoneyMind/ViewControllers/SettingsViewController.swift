@@ -38,21 +38,13 @@ class SettingsViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Settings"
+    }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-//        switch section{
-//        case sectionNotification, sectionAddCategory, sectionSetBudget, sectionClearData:
-//            return 1
-////        case sectionAddCategory:
-////            return 1
-////        case sectionSetBudget:
-////            return 1
-////        case sectionClearData:
-////            return 1
-//        default:
-            return 4
-        //}
+        return 4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,12 +60,12 @@ class SettingsViewController: UITableViewController {
         }
         else if indexPath.row == sectionAddCategory
         {
-            cellAddCategory.textLabel?.text = "Add Category"
+            cellAddCategory.textLabel?.text = "Category List"
             return cellAddCategory
         }
         else if indexPath.row == sectionSetBudget
         {
-            cellSetBudget.textLabel?.text = "Set Budget"
+            cellSetBudget.textLabel?.text = "Set Overall Budget"
             return cellSetBudget
         }
         else if indexPath.row == sectionClearData
@@ -104,7 +96,6 @@ class SettingsViewController: UITableViewController {
         }
         else if indexPath.row == sectionAddCategory
         {
-            addCategoryMessage(title: "New Category", message: "Please Enter Category Name")
         }
         else if indexPath.row == sectionSetBudget
         {
@@ -145,7 +136,10 @@ class SettingsViewController: UITableViewController {
     {
         let newCategory = Category(context: context)
         newCategory.category = category
-        
+        let budgetCategory = Budget(context: context)
+        budgetCategory.amount = 0
+        newCategory.budget = budgetCategory
+
         do{
             try context.save()
         }
@@ -156,7 +150,7 @@ class SettingsViewController: UITableViewController {
         
     }
     
-    func settingBudget(amount: Int32)
+    func settingBudget(amount: Float)
     {
         selectedBudget!.amount += amount
         do{
@@ -191,6 +185,7 @@ extension SettingsViewController //Alert Control Functions
             }
             else
             {
+                
                 self.createCategory(category: self.newCategory!)
             }
         }))
@@ -212,15 +207,13 @@ extension SettingsViewController //Alert Control Functions
             
             
             let inputBudget = alertController.textFields![0].text
-            let setBudget = Int32(inputBudget!)
-            //self.selectedBudget?.amount =
+            let setBudget = Float(inputBudget!)
             if setBudget == nil
             {
                 self.errorMessage(title: "Error", message: "Please Enter Amount")
             }
             else
             {
-                //self.createCategory(category: self.newCategory!)
                 self.settingBudget(amount: setBudget!)
             }
         }))

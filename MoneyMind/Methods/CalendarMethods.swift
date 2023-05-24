@@ -20,6 +20,10 @@ class CalendarMethods
     {
         return calendar.date(byAdding: .day, value: 1, to: date)!
     }
+    func prevDay(date: Date) -> Date
+    {
+        return calendar.date(byAdding: .day, value: -1, to: date)!
+    }
     func prevMonth(date: Date) -> Date
     {
         return calendar.date(byAdding: .month,value: -1, to: date)!

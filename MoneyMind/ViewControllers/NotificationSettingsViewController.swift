@@ -13,7 +13,7 @@ class NotificationSettingsViewController: UITableViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     let notificationSettingCell = "notificationSettingCell"
-    let notificationSettingData = ["Enable Notification", "Daily Expenses", "Weekly Expenses", "Monthly Expenses", "Reoccurring Expenses Made"]
+    let notificationSettingData = ["Enable Notification", "Daily Expenses", "Weekly Expenses", "Monthly Expenses"]
     
     let enableTag = 0
     let dailyTag = 1
@@ -43,9 +43,9 @@ class NotificationSettingsViewController: UITableViewController {
     var weeklyNotifTiming = DateComponents()
     var monthlyNotifTiming = DateComponents()
     
-    var dailyExpenses = 0
-    var weeklyExpenses = 0
-    var monthlyExpenses = 0
+    var dailyExpenses: Float = 0
+    var weeklyExpenses: Float = 0
+    var monthlyExpenses: Float = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,19 +175,15 @@ class NotificationSettingsViewController: UITableViewController {
                 }
                 else if tag == self.dailyTag
                 {
-                    self.setNotification(title: "Daily Expenses", body: "Expenses for the day is $$$", tag: tag)
+                    self.setNotification(title: "Daily Expenses", body: "Expenses for the day is $", tag: tag)
                 }
                 else if tag == self.weeklyTag
                 {
-                    self.setNotification(title: "Weekly Expenses", body: "Expenses for the day is $$$", tag: tag)
+                    self.setNotification(title: "Weekly Expenses", body: "Expenses for the day is $", tag: tag)
                 }
                 else if tag == self.monthlyTag
                 {
-                    self.setNotification(title: "Monthly Expenses", body: "Expenses for the day is $$$", tag: tag)
-                }
-                else if tag == self.reoccurringTag
-                {
-                    self.setNotification(title: "Reoccurring Expenses", body: "Expenses for the day is $$$", tag: tag)
+                    self.setNotification(title: "Monthly Expenses", body: "Expenses for the day is $", tag: tag)
                 }
                 print("Success")
             }
@@ -199,6 +195,21 @@ class NotificationSettingsViewController: UITableViewController {
         print("Enabled")
     }
     
+    func getDailyExpense()
+    {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "dd LLLL yyyy"
+        let formattedDate = dateFormat.string(from: Date())
+        for expense in expenses
+        {
+            let formattedExpenseDate = dateFormat.string(from: expense.date!)
+            if formattedExpenseDate == formattedDate
+            {
+                dailyExpenses += expense.amount
+            }
+        }
+    }
+    
     func setNotification(title: String, body: String, tag: Int)
     {
         //Notif Content
@@ -207,45 +218,42 @@ class NotificationSettingsViewController: UITableViewController {
         content.sound = .default
         
         //Notif Trigger
-        var trigger = UNCalendarNotificationTrigger(dateMatching: dailyNotifTiming, repeats: true)
+        //var trigger = UNCalendarNotificationTrigger(dateMatching: dailyNotifTiming, repeats: true)
+        var trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: false)
         var identifier = ""
         
         
         //After enabling
-//        if tag == enableTag
-//        {
-//            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//            identifier = enableIdentifier
-//        }
-        
-        //Daily Time Interval
-        if tag == dailyTag
+        if tag == enableTag
         {
+            getDailyExpense()
             content.body = body + String(dailyExpenses)
-            trigger = UNCalendarNotificationTrigger(dateMatching: dailyNotifTiming, repeats: true)
-            identifier = dailyIdentifier
+            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+            identifier = enableIdentifier
         }
         
-        //Weekly Time Interval
-        else if tag == weeklyTag
-        {
-            content.body = body + String(weeklyExpenses)
-            trigger = UNCalendarNotificationTrigger(dateMatching: weeklyNotifTiming, repeats: true)
-            identifier = weeklyIdentifier
-        }
-        
-        //Monthly Time Interval
-        else if tag == monthlyTag
-        {
-            content.body = body + String(monthlyExpenses)
-            trigger = UNCalendarNotificationTrigger(dateMatching: monthlyNotifTiming, repeats: true)
-            identifier = monthlyIdentifier
-        }
-        
-//        else if tag == reoccurringTag
+//        //Daily Time Interval
+//        if tag == dailyTag
 //        {
-//            trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-//            identifier = reoccurringIdentifier
+//            content.body = body + String(dailyExpenses)
+//            trigger = UNCalendarNotificationTrigger(dateMatching: dailyNotifTiming, repeats: true)
+//            identifier = dailyIdentifier 
+//        }
+//
+//        //Weekly Time Interval
+//        else if tag == weeklyTag
+//        {
+//            content.body = body + String(weeklyExpenses)
+//            trigger = UNCalendarNotificationTrigger(dateMatching: weeklyNotifTiming, repeats: true)
+//            identifier = weeklyIdentifier
+//        }
+//
+//        //Monthly Time Interval
+//        else if tag == monthlyTag
+//        {
+//            content.body = body + String(monthlyExpenses)
+//            trigger = UNCalendarNotificationTrigger(dateMatching: monthlyNotifTiming, repeats: true)
+//            identifier = monthlyIdentifier
 //        }
         
         //Notif Create

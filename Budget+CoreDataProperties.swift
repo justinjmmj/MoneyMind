@@ -2,7 +2,7 @@
 //  Budget+CoreDataProperties.swift
 //  MoneyMind
 //
-//  Created by Justin Justiniano  on 20/5/21.
+//  Created by Justin Justiniano  on 7/6/21.
 //
 //
 
@@ -16,7 +16,8 @@ extension Budget {
         return NSFetchRequest<Budget>(entityName: "Budget")
     }
 
-    @NSManaged public var amount: Int32
+    @NSManaged public var amount: Float
+    @NSManaged public var category: Category?
     @NSManaged public var expenses: NSSet?
     @NSManaged public var savings: NSSet?
 

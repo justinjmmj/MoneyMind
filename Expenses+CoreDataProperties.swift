@@ -2,7 +2,7 @@
 //  Expenses+CoreDataProperties.swift
 //  MoneyMind
 //
-//  Created by Justin Justiniano  on 20/5/21.
+//  Created by Justin Justiniano  on 7/6/21.
 //
 //
 
@@ -16,9 +16,11 @@ extension Expenses {
         return NSFetchRequest<Expenses>(entityName: "Expenses")
     }
 
-    @NSManaged public var amount: Int32
+    @NSManaged public var amount: Float
     @NSManaged public var date: Date?
     @NSManaged public var expense: String?
+    @NSManaged public var notes: String?
+    @NSManaged public var image: String?
     @NSManaged public var budget: Budget?
     @NSManaged public var category: Category?
 

@@ -13,16 +13,19 @@ class CalendarViewController: UIViewController
     
     @IBOutlet weak var dateLbl: UILabel! 
     @IBOutlet weak var calenderColectionView: UICollectionView!
+    @IBOutlet weak var expensesUITableView: UIView!
     @IBOutlet weak var expensesTableView: UITableView!
+    
     
     var selectedDate = Date()
     var totalSquares = [String]()
     var dateSquares = [Date]()
     var expensesSquare = [String]()
-    var dailyExpenseAmount = 0
+    var dailyExpenseAmount: Float = 0
     
     var expenses = [Expenses]()
     var selectedExpenses = [Expenses]()
+    var selectedExpense: Expenses?
     var tableSectionHeader = "Expenses"
 
     let calCell = "calCell"
@@ -37,13 +40,29 @@ class CalendarViewController: UIViewController
         getDateExpenses(index: showMonthExpenseIndex)
         setCells()
         setMonth()
+        expensesUITableView.isHidden = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        getAllItems()
+        getDateExpenses(index: showMonthExpenseIndex)
+        setCells()
+        setMonth()
+        expensesUITableView.isHidden = true
         calenderColectionView.reloadData()
         expensesTableView.reloadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "editExpenseSegue"
+        {
+            let destination = segue.destination as! AddExpensesViewController
+            destination.selectedExpense = selectedExpense
+            destination.expensesDelegate = self
+        }
+    }
     
     @IBAction func swipeNextMonth(_ sender: Any) {
         nextMonth()
@@ -57,6 +76,26 @@ class CalendarViewController: UIViewController
     
     @IBAction func prevBtn(_ sender: Any) {
         prevMonth()
+    }
+    
+    @IBAction func nextDayBtn(_ sender: Any) {
+        selectedDate = CalendarMethods().nextDay(date: selectedDate)
+        tableSectionHeader = "Expenses On \((CalendarMethods().dayString(date: selectedDate))) \(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
+        getDateExpenses(index: showDayExpenseIndex)
+    }
+
+    @IBAction func prevDayBtn(_ sender: Any) {
+        selectedDate = CalendarMethods().prevDay(date: selectedDate)
+        tableSectionHeader = "Expenses On \((CalendarMethods().dayString(date: selectedDate))) \(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
+        getDateExpenses(index: showDayExpenseIndex)
+    }
+    
+    @IBAction func closeUIBtn(_ sender: Any) {
+        expensesUITableView.isHidden = true
+    }
+    
+    @IBAction func accessWalletBtn(_ sender: Any) {
+        DeeplinkMethods().accessWallet()
     }
 }
 extension CalendarViewController
@@ -93,6 +132,8 @@ extension CalendarViewController
         let daysInMonth = CalendarMethods().daysInMonth(date: selectedDate)
         let startingCell = CalendarMethods().weekDay(date: dayOfMonth)
         let newLabel =  "\(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = "dd LLLL yyyy"
         
         var count: Int = 1
         
@@ -107,12 +148,27 @@ extension CalendarViewController
             {
                 totalSquares.append(String(count - startingCell))
                 dateSquares.append(dayOfMonth)
-                //If statement doing the addition of DailyExpenses
-                expensesSquare.append(String(dailyExpenseAmount))
+                let formatDayofMonth = dateFormat.string(from: dayOfMonth)
+                for expenses in expenses
+                {
+                    let formatExpenseDate = dateFormat.string(from: expenses.date!)
+                    if formatExpenseDate == formatDayofMonth
+                    {
+                        dailyExpenseAmount += expenses.amount
+                    }
+                }
+                if dailyExpenseAmount > 0
+                {
+                    expensesSquare.append("$\(String(dailyExpenseAmount))")
+                }
+                else
+                {
+                    expensesSquare.append("")
+                }
                 dailyExpenseAmount = 0
-                
                 dayOfMonth = CalendarMethods().nextDay(date: dayOfMonth)
             }
+            dailyExpenseAmount = 0
             count += 1
         }
         
@@ -126,7 +182,6 @@ extension CalendarViewController
         tableSectionHeader = "Expenses Made On \(newLabel)"
         
         calenderColectionView.reloadData()
-        expensesTableView.reloadData()
     }
     
     func getAllItems()
@@ -137,12 +192,29 @@ extension CalendarViewController
         catch{
             print("Getting Expenses did not Work")
         }
-        
+    }
+    
+    func deleteItem(expenses: Expenses)
+    {
+        context.delete(expenses)
+        do{
+            try context.save()
+            getAllItems()
+            setCells()
+            setMonth()
+            getDateExpenses(index: showDayExpenseIndex)
+        }
+        catch
+        {
+            
+        }
     }
     
     func getDateExpenses(index: Int)
     {
+        selectedExpenses.removeAll()
         let dateFormat = DateFormatter()
+        
         if index == showMonthExpenseIndex
         {
             dateFormat.dateFormat = "LLLL yyyy"
@@ -162,10 +234,18 @@ extension CalendarViewController
                 selectedExpenses.append(expenses)
             }
         }
-        
+        tableSectionHeader = "Expenses On \((CalendarMethods().dayString(date: selectedDate))) \(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
+        expensesTableView.reloadData()
     }
 }
 
+extension CalendarViewController: ExpensesDelegate
+{
+    func getExpenses() -> Bool {
+        getAllItems()
+        return true
+    }
+}
 
 extension CalendarViewController: UICollectionViewDelegate, UICollectionViewDataSource
 {
@@ -176,35 +256,7 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = calenderColectionView.dequeueReusableCell(withReuseIdentifier: calCell, for: indexPath) as! CalendarCollectionViewCell
         cell.dayLbl.text =  totalSquares[indexPath.item]
-        
-        
-        if totalSquares[indexPath.item] != ""
-        {
-            let dateIndex = Int(totalSquares[indexPath.item])! - 1
-            let specificDate = dateSquares[dateIndex]
-            
-            let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "dd LLLL yyyy"
-            
-            let specificDateFormat = dateFormat.string(from: specificDate)
-            let selectedDateFormat = dateFormat.string(from: selectedDate)
-            
-            var expenseAmount = 0
-            
-            for expenses in expenses
-            {
-                if specificDateFormat == selectedDateFormat
-                {
-                    expenseAmount += Int(expenses.amount)
-                }
-            }
-            cell.expensesLbl.text = "$\(expenseAmount)"
-        }
-        else
-        {
-            cell.expensesLbl.text = ""
-        }
-        dailyExpenseAmount = 0
+        cell.expensesLbl.text = expensesSquare[indexPath.item]
         return cell
     }
     
@@ -215,14 +267,14 @@ extension CalendarViewController: UICollectionViewDelegate, UICollectionViewData
             let dateIndex = Int(totalSquares[indexPath.item])! - 1
             selectedDate = (dateSquares[dateIndex])
             
-            tableSectionHeader = "Expenses Made On \((CalendarMethods().dayString(date: selectedDate))) \(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
+            tableSectionHeader = "Expenses On \((CalendarMethods().dayString(date: selectedDate))) \(CalendarMethods().monthString(date: selectedDate)) \(CalendarMethods().yearString(date: selectedDate))"
             
             selectedExpenses.removeAll()
             getDateExpenses(index: showDayExpenseIndex)
+            expensesUITableView.isHidden = false
         }
         expensesTableView.reloadData()
         collectionView.reloadData()
-        
     }
     
 }
@@ -239,7 +291,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource
             return selectedExpenses.count
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: expensesCell)!
         if selectedExpenses.count != 0
@@ -247,18 +299,39 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource
             let model = selectedExpenses[indexPath.row]
             cell.textLabel?.text = model.expense
             cell.detailTextLabel?.text = "$\(String(model.amount))"
+            tableView.allowsSelection = true
         }
         else
         {
             cell.textLabel?.text = "No Expenses Made"
             cell.detailTextLabel?.text = ""
+            tableView.allowsSelection = false
         }
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return tableSectionHeader
     }
-
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedExpense = selectedExpenses[indexPath.row]
+        expensesUITableView.isHidden = true
+        performSegue(withIdentifier: "editExpenseSegue", sender: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete
+        {
+            // Delete the row from the data source
+            selectedExpense = selectedExpenses[indexPath.row]
+            selectedExpense?.budget?.amount += selectedExpense!.amount
+            selectedExpense!.category?.budget?.amount += selectedExpense!.amount
+            self.deleteItem(expenses: selectedExpense!)
+        }
+    }
 }

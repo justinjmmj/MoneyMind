@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        preloadData()
         return true
     }
 
@@ -30,6 +31,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    private func preloadData()
+    {
+        let preloadedDataKey = "didPreload"
+        let userDefaults = UserDefaults.standard
+        if userDefaults.bool(forKey: preloadedDataKey) == false
+        {
+            guard  let urlPath = Bundle.main.url(forResource: "PreloadCategory", withExtension: "plist")
+            else{return}
+            
+            let backgroundContext = persistentContainer.newBackgroundContext()
+            backgroundContext.perform {
+                
+                do
+                {
+                    let notificationSettingObject = NotificationSettings(context: backgroundContext)
+                    notificationSettingObject.enable = 0;
+                    notificationSettingObject.daily = 0;
+                    notificationSettingObject.weekly = 0;
+                    notificationSettingObject.monthly = 0;
+                    notificationSettingObject.reoccurring = 0;
+                    
+                    let budgetItem = Budget(context: backgroundContext)
+                    budgetItem.amount = 0;
+                    
+                    try backgroundContext.save()
+                }
+                catch
+                {
+                    print ("Error Saving Notif Settings")
+                }
+                
+                if let arrayContents = NSArray(contentsOf: urlPath) as? [String]
+                {
+                    do{
+                        for category in arrayContents
+                        {
+                            let categoryObject = Category(context: backgroundContext)
+                            categoryObject.category = category
+                            let budgetCategory = Budget(context: backgroundContext)
+                            budgetCategory.amount = 0
+                            categoryObject.budget = budgetCategory
+                        }
+                        try backgroundContext.save()
+                        userDefaults.set(true, forKey: preloadedDataKey)
+                    }
+                    catch{
+                        print("Error Saving Category Objects")
+                    }
+                }
+            }
+        }
     }
 
     // MARK: - Core Data stack

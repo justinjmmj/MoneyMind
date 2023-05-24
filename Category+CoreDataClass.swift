@@ -2,7 +2,7 @@
 //  Category+CoreDataClass.swift
 //  MoneyMind
 //
-//  Created by Justin Justiniano  on 20/5/21.
+//  Created by Justin Justiniano  on 7/6/21.
 //
 //
 

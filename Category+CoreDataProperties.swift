@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  MoneyMind
 //
-//  Created by Justin Justiniano  on 20/5/21.
+//  Created by Justin Justiniano  on 7/6/21.
 //
 //
 
@@ -17,6 +17,7 @@ extension Category {
     }
 
     @NSManaged public var category: String?
+    @NSManaged public var budget: Budget?
     @NSManaged public var expenses: NSSet?
 
 }

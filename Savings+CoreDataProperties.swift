@@ -2,7 +2,7 @@
 //  Savings+CoreDataProperties.swift
 //  MoneyMind
 //
-//  Created by Justin Justiniano  on 20/5/21.
+//  Created by Justin Justiniano  on 7/6/21.
 //
 //
 
@@ -16,7 +16,7 @@ extension Savings {
         return NSFetchRequest<Savings>(entityName: "Savings")
     }
 
-    @NSManaged public var amount: Int32
+    @NSManaged public var amount: Float
     @NSManaged public var date: Date?
     @NSManaged public var savings: String?
     @NSManaged public var budget: Budget?
